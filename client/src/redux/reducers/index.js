@@ -4,8 +4,7 @@ import { combineReducers } from "redux";
 import DocumentEditReducer from "./DocumentEditReducer";
 import DocumentListReducer from "./DocumentListReducer";
 import HomeReducer from "./HomeReducer";
-import UserEditReducer from "./UserEditReducer";
-import UserListReducer from "./UserListReducer";
+
 
 // END IMPORT REDUCERS
 
@@ -28,8 +27,7 @@ const rootReducer = combineReducers({
 	DocumentEditReducer,
 	DocumentListReducer,
 	HomeReducer,
-	UserEditReducer,
-	UserListReducer,
+
  // END COMBINE REDUCERS
 
 });

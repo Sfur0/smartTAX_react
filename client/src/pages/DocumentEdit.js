@@ -21,6 +21,7 @@ import FormControl from "@material-ui/core/FormControl";
 
 // START IMPORT ACTIONS
 import DocumentActions from "../redux/actions/DocumentActions";
+import UserActions from "../redux/actions/UserActions";
 
 // END IMPORT ACTIONS
 
@@ -186,6 +187,7 @@ class DocumentEdit extends Component {
 const mapDispatchToProps = function(dispatch) {
   return { 
     actionsDocument: bindActionCreators(DocumentActions, dispatch),
+    actionsUser: bindActionCreators(UserActions, dispatch),
   };
 };
 

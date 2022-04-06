@@ -20,8 +20,7 @@ import UserList from "./pages/UserList";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import UserEdit from "./pages/UserEdit";
-import UserList from "./pages/UserList";
+
 
 class Routes extends Component {
   render() {
@@ -38,14 +37,13 @@ class Routes extends Component {
               
               {/* CUSTOM VIEWS */}
 
-              <PrivateRoute exact path="/home" component={Home} />
+         
 
               {/* START MY VIEWS */}
 
               <PrivateRoute exact path="/documents/:id" component={ DocumentEdit }  />
               <PrivateRoute exact path="/documents" component={ DocumentList }  />
-              <PrivateRoute exact path="/users/:id" component={ UserEdit } roles={[ 'ADMIN', ]}  />
-              <PrivateRoute exact path="/users" component={ UserList } roles={[ 'ADMIN', ]}  />
+
 
              {/* END MY VIEWS */}
 
