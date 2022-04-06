@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 
 // Material UI
 import TextField from "@material-ui/core/TextField";
+import { DateTimePicker } from "material-ui-pickers";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -58,7 +59,7 @@ class DocumentEdit extends Component {
     if (this.props.match.params.id !== "new") {
       this.props.actionsDocument.loadDocument(this.props.match.params.id);
     }
-    
+
     this.props.actionsUser.loadUserList();
   }
 
@@ -90,17 +91,6 @@ class DocumentEdit extends Component {
         <h1>Document Edit</h1>
         <form className="myForm" onSubmit={this.save.bind(this)}>
 
-          
-          <TextField
-            id="Date"
-            label="Date"
-            value={this.state.document.Date || ""}
-            onChange={Utils.handleChange.bind(this, "document")}
-            margin="normal"
-            fullWidth
-          />
-          
-          
           <TextField
             id="Name"
             label="Name"
@@ -113,8 +103,23 @@ class DocumentEdit extends Component {
               ? { error: true }
               : {})}
           />
-          
-          
+
+          <DateTimePicker
+            id="date"
+            label="Date"
+            className="mt-20 mb-20"
+            ampm={false}
+            value={
+              this.state.document.date
+                ? new Date(this.state.document.date)
+                : null
+            }
+            onChange={Utils.handleChangeDate.bind(this, "document", "date")}
+            fullWidth
+            autoOk
+            disableFuture
+          />
+
           <TextField
             id="Size"
             label="Size"
@@ -123,8 +128,8 @@ class DocumentEdit extends Component {
             margin="normal"
             fullWidth
           />
-          
-          
+
+
           <TextField
             id="Type"
             label="Type"
@@ -132,18 +137,18 @@ class DocumentEdit extends Component {
             onChange={Utils.handleChange.bind(this, "document")}
             margin="normal"
             fullWidth
-            required
-            {...(!this.state.document.Type && this.state.document.Type === ""
-              ? { error: true }
-              : {})}
+          // required
+          // {...(!this.state.document.Type && this.state.document.Type === ""
+          //   ? { error: true }
+          //   : {})}
           />
-          
+
           {/* RELATIONS */}
 
           <h2 className="mb-20">Relations</h2>
-          
+
           {/* Relation 1:m _users with User */}
-          
+
           <FormControl fullWidth className="mb-20">
             <InputLabel shrink htmlFor="_users">
               _users
@@ -167,8 +172,8 @@ class DocumentEdit extends Component {
               ))}
             </Select>
           </FormControl>
-          
-          
+
+
           {/* Footer */}
           <div className="footer-card">
             <Link to="/documents/">Back to list</Link>
@@ -184,15 +189,15 @@ class DocumentEdit extends Component {
 }
 
 // Store actions
-const mapDispatchToProps = function(dispatch) {
-  return { 
+const mapDispatchToProps = function (dispatch) {
+  return {
     actionsDocument: bindActionCreators(DocumentActions, dispatch),
     actionsUser: bindActionCreators(UserActions, dispatch),
   };
 };
 
 // Validate types
-DocumentEdit.propTypes = { 
+DocumentEdit.propTypes = {
   actionsDocument: PropTypes.object.isRequired,
 };
 

@@ -33,19 +33,19 @@ const generatedModel = {
       * Document
       */
     const documentSchema = new mongoose.Schema({
-      Date: {
-        type: "String"
-      },
       Name: {
         type: "String", 
         required: true
+      },
+      Date: {
+        type:"Date",
       },
       Size: {
         type: "String"
       },
       Type: {
         type: "String", 
-        required: true
+        // required: true
       },
       // RELATIONS
       _users: {
